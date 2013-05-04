@@ -8,16 +8,6 @@
  Description: Plugin für "Lass den Klick in deiner Stadt"
  */
  
- if (!defined('WP_CONTENT_URL'))
-	define('WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
-if (!defined('WP_CONTENT_DIR'))
-	define('WP_CONTENT_DIR', ABSPATH . 'wp-content');
-if (!defined('WP_PLUGIN_URL'))
-	define('WP_PLUGIN_URL', WP_CONTENT_URL . '/plugins');
-if (!defined('WP_PLUGIN_DIR'))
-	define('WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins');
-if (!defined('WP_LANG_DIR'))
-	define('WP_LANG_DIR', WP_CONTENT_DIR . '/languages');
  
  $wuebu_stadtklick_buchhandlungUrlArray=  Array(
  	array(
@@ -43,10 +33,17 @@ if (!defined('WP_LANG_DIR'))
 	);
 	
 	
+	if ($_GET["stadtklick_isbn"]) {
+		$buchlink=wuebu_stadtklick_get_random_shop($_GET['stadtklick_isbn']);
+		$url=$buchlink['url'];
+		header("Location: ".$url);
+		exit;
+	}
+	
 	function wuebu_stadtklick_get_random_shop($isbn) {
 		global $wuebu_stadtklick_buchhandlungUrlArray;
 		$isbn=str_replace('-', '', $isbn);
-		$randomShopNumber=rand(0, sizeof($wuebu_stadtklick_buchhandlungUrlArray));
+		$randomShopNumber=rand(0, sizeof($wuebu_stadtklick_buchhandlungUrlArray)-1);
 		$shopUrl=$wuebu_stadtklick_buchhandlungUrlArray[$randomShopNumber]['url'];
 		$shopUrl=str_replace('%%isbn%%', $isbn, $shopUrl);
 		$randomShop=array(
@@ -57,16 +54,14 @@ if (!defined('WP_LANG_DIR'))
 		return $randomShop;
 	}
 	
-	function wuebu_stadtklick_shortcode_func( $atts ) {
-		
-	extract( shortcode_atts( array(
-		'isbn' => '00000',
-		'name' => 'Das Buch in einer Würzburger Buchhandlung',
-	), $atts ) );
+	function wuebu_stadtklick_shortcode_func( $attr ) {
+		extract( shortcode_atts( array(
+			'isbn' => '00000',
+		), $attr ) );
 		$buchlink=wuebu_stadtklick_get_random_shop($isbn);
-	return '<a href="'.$buchlink['url'].'">'.$buchlink['name'].'</a>';
-}
-add_shortcode("stadtklick", "wuebu_stadtklick_shortcode_func");
+		return '<a href="'.$buchlink['url'].'">'.$buchlink['name'].'</a>';
+	}
+	add_shortcode("stadtklick", "wuebu_stadtklick_shortcode_func");
 
 
 ?>
