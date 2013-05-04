@@ -66,9 +66,16 @@
 	function wuebu_stadtklick_shortcode_func( $attr ) {
 		extract( shortcode_atts( array(
 			'isbn' => '00000',
+			'name' => ''
 		), $attr ) );
 		$buchlink=wuebu_stadtklick_get_random_shop($isbn);
-		return '<a href="'.$buchlink['url'].'">'.$buchlink['name'].'</a>';
+		if ($name) {
+			$urltitle=$name;
+		} else {
+			$urltitle=$buchlink['name'];
+		}
+		
+		return '<a href="'.$buchlink['url'].'">'.$urltitle.'</a>';
 	}
 	add_shortcode("stadtklick", "wuebu_stadtklick_shortcode_func");
 
