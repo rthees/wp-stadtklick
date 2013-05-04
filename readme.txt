@@ -17,6 +17,9 @@ Will man nun auf ein Buch im Blog verlinken, steht man dabei vor dem Problem, da
 
 Das Plugin verlinkt nun zufällig auf einen Online-Shop eines Buchladens - im Moment nur auf Läden in Würzburg.
 
+* [Website "Lass den Klick in deiner Stadt, Würzburg"](http://buylocal-wuerzburg.de/)
+* [WP-StadtKlick bei GitHub](https://github.com/rthees/wp-stadtklick)
+
 == Installation ==
 
 Einfach installieren

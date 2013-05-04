@@ -29,6 +29,10 @@
 	array(
  		'name'=>'Buchhandlung Dreizehneinhalb',
  		'url'=>'http://shop.dreizehneinhalb.de/webapp/wcs/stores/servlet/SearchCmd/66216/4099276460822233275/-3/%%isbn%%'
+ 		),
+ 	array(
+ 		'name'=>'Hätz',
+ 		'url'=>'http://www.buchkatalog-reloaded.de/webapp/wcs/stores/servlet/SearchCmd/38220/4099276460822233274/-3/%%isbn%%'
  		)
 	);
 	
