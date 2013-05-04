@@ -31,9 +31,14 @@
  		'url'=>'http://shop.dreizehneinhalb.de/webapp/wcs/stores/servlet/SearchCmd/66216/4099276460822233275/-3/%%isbn%%'
  		),
  	array(
- 		'name'=>'Hätz',
+ 		'name'=>'Hätzfelder Bücherstube',
  		'url'=>'http://www.buchkatalog-reloaded.de/webapp/wcs/stores/servlet/SearchCmd/38220/4099276460822233274/-3/%%isbn%%'
+ 		),
+ 	array(
+ 		'name'=>'Stephans-Buchhandlung',
+ 		'url'=>'http://shop.stephans-buchhandlung.de/buchkatalog/search/result/?q=%%isbn%%'
  		)
+		
 	);
 	
 	
