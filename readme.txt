@@ -5,8 +5,9 @@ Tags: books, shop, ecommerce, deeplink, randomize
 Requires at least: 2.8.0
 Tested up to: 3.5.1
 Stable tag: 0.1
+License: GPLv2 or later
 
-Das Plugin setzt einen Link auf ein Buch in einem zufällig ausgewählten Online-Shop eines Buchladens. 
+Setzt einen Link auf ein Buch in einem zufällig ausgewählten Online-Shop eines Buchladens. 
 
 == Description ==
 
