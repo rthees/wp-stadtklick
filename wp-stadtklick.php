@@ -11,10 +11,6 @@
  
  $wuebu_stadtklick_buchhandlungUrlArray=  Array(
  	array(
- 		'name'=>'Buchhandlung erLesen',
- 		'url'=>'http://272900.umbreitwebshop.de/cgi-bin/umb_shop.exe/show?page=vollanzeige.html&ISBN=%%isbn%%&action=vollanzeige'
- 		),
-	array(
  		'name'=>'Buchhandlung Neuer Weg',
  		'url'=>'http://www.buchkatalog.de/kod-bin/isuche.cgi?dbname=Buchkatalog&lang=deutsch&uid=neuerweg-29042013-211453993-C03344&caller=neuerweg&usecookie=ja&sb=%%isbn%%'
  		),
@@ -37,8 +33,11 @@
  	array(
  		'name'=>'Stephans-Buchhandlung',
  		'url'=>'http://shop.stephans-buchhandlung.de/buchkatalog/search/result/?q=%%isbn%%'
+ 		),
+ 	array(
+ 		'name'=>'Buchhandlung erLesen',
+ 		'url'=>'http://272900.umbreitwebshop.de/cgi-bin/umb_shop.exe/show?page=vollanzeige.html&titel_id=%%isbn%%&action=vollanzeige'
  		)
-		
 	);
 	
 	
