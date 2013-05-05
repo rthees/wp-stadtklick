@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: Stadtklick
- Version: 0.1
+ Version: 0.2
  Plugin URI: http://herrthees.de/
  Author: Ralf Thees
  Author URI: http://herrthees.de/
