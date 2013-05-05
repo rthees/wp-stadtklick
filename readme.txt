@@ -1,6 +1,6 @@
 === WP-StadtKlick ===
 Contributors: wuerzblog
-Donate link: http://flattr.com/thing/313825/Wordpress-Plugin-A-Year-Before
+Donate link: https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das-WordPress-Plugin
 Tags: books, shop, ecommerce, deeplink, randomize
 Requires at least: 2.8.0
 Tested up to: 3.5.1
