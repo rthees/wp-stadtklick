@@ -41,8 +41,8 @@
 	);
 	
 	function isbn10to13($isbn) {
+		$isbn=str_replace('-', '', $isbn);
 		if (strlen($isbn)==10) {
-			$isbn=str_replace('-', '', $isbn);
 			$isbn="978".$isbn;  // Buchkennung
 			$isbn=substr($isbn,0,strlen($isbn)-1); // ISBN-10-Prüfziffer abschneiden
 			$pruefziffer=(10-(($isbn[0]+$isbn[2]+$isbn[4]+$isbn[6]+$isbn[8]+$isbn[10]+3*($isbn[1]+$isbn[3]+$isbn[5]+$isbn[7]+$isbn[9]+$isbn[11]))%10)%10); // Prüfziffer berechnen
