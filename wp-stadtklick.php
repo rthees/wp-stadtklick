@@ -40,6 +40,17 @@
  		)
 	);
 	
+	function isbn10to13($isbn) {
+		if (strlen($isbn)==10) {
+			$isbn=str_replace('-', '', $isbn);
+			$isbn="780".$isbn;  // Buchkennung
+			$isbn=substr($isbn,0,strlen($isbn)-1); // ISBN-10-Prüfziffer abschneiden
+			$pruefziffer=(10-(($isbn[0]+$isbn[2]+$isbn[4]+$isbn[6]+$isbn[8]+$isbn[10]+3*($isbn[1]+$isbn[3]+$isbn[5]+$isbn[7]+$isbn[9]+$isbn[11]))%10)%10); // Prüfziffer berechnen
+			$isbn=$isbn.$pruefziffer;
+			return $isbn;
+		}
+	}
+	
 	
 	if ($_GET["stadtklick_isbn"]) {
 		$buchlink=wuebu_stadtklick_get_random_shop($_GET['stadtklick_isbn']);
@@ -50,7 +61,7 @@
 	
 	function wuebu_stadtklick_get_random_shop($isbn) {
 		global $wuebu_stadtklick_buchhandlungUrlArray;
-		$isbn=str_replace('-', '', $isbn);
+		$isbn=isbn10to13($isbn);
 		$randomShopNumber=rand(0, sizeof($wuebu_stadtklick_buchhandlungUrlArray)-1);
 		$shopUrl=$wuebu_stadtklick_buchhandlungUrlArray[$randomShopNumber]['url'];
 		$shopUrl=str_replace('%%isbn%%', $isbn, $shopUrl);
