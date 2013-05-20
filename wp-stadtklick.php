@@ -115,15 +115,20 @@ function wp_stadtklick_section_shop() {
 
 function wp_stadtklick_shop_name_input() {
 	$options = get_option('wp_stadtklick_options');
-	echo "<pre>"; print_r($options); echo "</pre>";
+	//echo "<pre>"; print_r($options); echo "</pre>";
 	$i=0;
 	if (is_array($options)) {
 	foreach ($options as $o) {
-		echo "<input id='wp_stadtklick_shop_$i' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='".$o['shop']['name']."' /><br/>";
+		echo '<div style="border: 1px solid #999; padding: 0 0 10px 0;">';
+		echo "<input id='wp_stadtklick_shop_name_$i' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='".$o['shop']['name']."' /><br/>";
+		echo "<input id='wp_stadtklick_shop_url_$i' name='wp_stadtklick_options[$i][shop][url]' size='80' type='text' value='".$o['shop']['url']."' /><br/>";
+		echo '</div>';
 		$i++;
 	}
 	}
-			echo "<input id='wp_stadtklick_shop' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='' />";
+			echo "<input id='wp_stadtklick_shop_name' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='' /><br/>";
+			echo "<input id='wp_stadtklick_shop_url_$i' name='wp_stadtklick_options[$i][shop][url]' size='80' type='text' value='' /><br/>";
+		
 	
 }
 
