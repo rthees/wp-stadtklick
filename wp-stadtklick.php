@@ -11,7 +11,10 @@
 load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)) . '');
 //include_once dirname( __FILE__ )  .'/wp_stadtklick_options.php';
  
- $wuebu_stadtklick_buchhandlungUrlArray=  Array(
+ $wuebu_stadtklick_buchhandlungUrlArray=  get_option('wp_stadtklick_options');
+ //print_r($wuebu_stadtklick_buchhandlungUrlArray);
+ /*
+ Array(
  	array(
  		'name'=>'Buchhandlung Neuer Weg',
  		'url'=>'http://www.buchkatalog.de/kod-bin/isuche.cgi?dbname=Buchkatalog&lang=deutsch&uid=neuerweg-29042013-211453993-C03344&caller=neuerweg&usecookie=ja&sb=%%isbn%%'
@@ -41,7 +44,7 @@ load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)
  		'url'=>'http://272900.umbreitwebshop.de/cgi-bin/umb_shop.exe/show?page=vollanzeige.html&titel_id=%%isbn%%&action=vollanzeige'
  		)
 	);
-	
+	*/
 	function isbn10to13($isbn) {
 		$isbn=str_replace('-', '', $isbn);
 		if (strlen($isbn)==10) {
@@ -66,11 +69,11 @@ load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)
 		global $wuebu_stadtklick_buchhandlungUrlArray;
 		$isbn=isbn10to13($isbn);
 		$randomShopNumber=rand(0, sizeof($wuebu_stadtklick_buchhandlungUrlArray)-1);
-		$shopUrl=$wuebu_stadtklick_buchhandlungUrlArray[$randomShopNumber]['url'];
+		$shopUrl=$wuebu_stadtklick_buchhandlungUrlArray[$randomShopNumber]['shop']['url'];
 		$shopUrl=str_replace('%%isbn%%', $isbn, $shopUrl);
 		$randomShop=array(
 			'isbn'=>$isbn,
-			'name'=>$wuebu_stadtklick_buchhandlungUrlArray[$randomShopNumber]['name'],
+			'name'=>$wuebu_stadtklick_buchhandlungUrlArray[$randomShopNumber]['shop']['name'],
 			'url'=>$shopUrl
 		);
 		return $randomShop;
@@ -151,23 +154,38 @@ function wp_stadtklick_options_page() {
 	<div class="wrap">
 	<h2>WP-Stadtklick - Einstellungen</h2>
 	<form method="post" action="options.php"> 
-		
+	<?php $options = get_option('wp_stadtklick_options'); // print_r($options); ?>
 	<?php settings_fields( 'wp_stadtklick_options' ); ?>
 	
-	<?php // $options = get_option('wp_stadtklick'); print_r($options); ?>
-	<?php do_settings_sections('wp_stadtklick'); ?>
-	<!--
+	
+	<?php //do_settings_sections('wp_stadtklick'); ?>
+	
 	<table class="form-table">
+		<?php
+			$i=0;
+			foreach ($options as $o) {
+		?>
 		
-	    		<tr><th colspan="2">Neue Buchhandlung</th></tr>
-	    		<tr valign="top"><th scope="row"><?php __('Name der Buchhandlung','wp_stadtklick'); ?></th>
-	                    <td><input name="wp_stadtklick" type="text" value="" /></td>
+	    		
+	    		<tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung','wp_stadtklick'); ?></th>
+	                    <td><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='80'  type="text" value="<?php echo $o['shop']['name']; ?>" /></td>
 	                </tr>
-	                <tr valign="top"><th scope="row"><?php __('URL zu einem Buch im Webshop (%%isbn%% anstelle der ISBN-Nummer','wp_stadtklick'); ?></th>
-	                    <td><input type="text" name="wp_stadtklick2" value="" /></td>
+	                <tr valign="top"><th scope="row"><?php echo __('URL zu einem Buch im Webshop','wp_stadtklick'); ?></th>
+	                    <td><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]" size='80'  value="<?php echo $o['shop']['url']; ?>" /></td>
+	                </tr>
+	      <?php 
+	          $i++;
+			}
+			?>
+			<tr><th colspan="2">Neue Buchhandlung</th></tr>
+	    		<tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung','wp_stadtklick'); ?></th>
+	                    <td><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='80'  type="text" value="" /></td>
+	                </tr>
+	                <tr valign="top"><th scope="row"><?php echo __('URL zu einem Buch im Webshop (%%isbn%% anstelle der ISBN-Nummer','wp_stadtklick'); ?></th>
+	                    <td><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]"  size='80'  value="" /></td>
 	                </tr>
 	            </table>
-	           //-->
+	         
 				<?php submit_button(); ?>
 	</form>
 	</div>
