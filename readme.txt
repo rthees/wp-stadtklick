@@ -33,10 +33,15 @@ Beispiel:
 
 == Upgrade Notice ==
 
-= 0.1.1 =
-Fix: 
+= 0.2 =
+
++ all isbn will be converted to isbn-13/ean
 
 == Changelog ==
+
+= 0.2 =
+
++ all isbn will be converted to isbn-13/ean
 
 = 0.1 =
 
