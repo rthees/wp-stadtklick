@@ -36,6 +36,7 @@ Beispiel:
 = 0.2 =
 
 + all isbn will be converted to isbn-13/ean
++ simple options-page 
 
 == Changelog ==
 
