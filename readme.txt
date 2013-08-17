@@ -4,7 +4,7 @@ Donate link: https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das
 Tags: books, shop, ecommerce, deeplink, randomize
 Requires at least: 2.8.0
 Tested up to: 3.5.1
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv2 or later
 
 Setzt einen Link auf ein Buch in einem zufällig ausgewählten Online-Shop eines Buchladens. 
@@ -41,9 +41,13 @@ Beispiel:
 
 == Changelog ==
 
+= 0.3 =
++ Einstellungs-Seite
+
 = 0.2 =
 
 + Alle ISBN werden in ISBN-13/EAN konvertiert
+
 
 = 0.1 =
 
