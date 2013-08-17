@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: Stadtklick
- Version: 0.2
+ Version: 0.3
  Plugin URI: http://herrthees.de/
  Author: Ralf Thees
  Author URI: http://herrthees.de/
@@ -149,39 +149,52 @@ function wp_stadtklick_validate($input) {
 
 
 
-function wp_stadtklick_options_page() { 
+function wp_stadtklick_options_page() {
+	
+	wp_register_script( 'wpskscript', plugins_url('/wpskscript.js', __FILE__), array('jquery'));
+
+wp_enqueue_script( 'wpskscript' );
+ 
 	?>
 	<div class="wrap">
 	<h2>WP-Stadtklick - Einstellungen</h2>
 	<form method="post" action="options.php"> 
-	<?php $options = get_option('wp_stadtklick_options'); // print_r($options); ?>
-	<?php settings_fields( 'wp_stadtklick_options' ); ?>
+	<?php $options = get_option('wp_stadtklick_options');
+		// print_r($options);
+ ?>
+	<?php settings_fields('wp_stadtklick_options'); ?>
 	
 	
 	<?php //do_settings_sections('wp_stadtklick'); ?>
 	
-	<table class="form-table">
+	<table class="widefat">
 		<?php
 			$i=0;
+			if (is_array($options)) {
+				echo '<thead>';
+				echo '<tr  scope="col"><th>'.__('Name der Buchhandlung', 'wp_stadtklick').'</th><th scope="col">'.__('URL zu einem Buch im Webshop', 'wp_stadtklick').'</th><th>'.__('Aktion', 'wp_stadtklick').'</th></tr>';
+				echo '</thead>';
 			foreach ($options as $o) {
 		?>
 		
 	    		
-	    		<tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung','wp_stadtklick'); ?></th>
-	                    <td><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='80'  type="text" value="<?php echo $o['shop']['name']; ?>" /></td>
-	                </tr>
-	                <tr valign="top"><th scope="row"><?php echo __('URL zu einem Buch im Webshop','wp_stadtklick'); ?></th>
-	                    <td><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]" size='80'  value="<?php echo $o['shop']['url']; ?>" /></td>
-	                </tr>
-	      <?php 
-	          $i++;
+	    		<tr valign="top">
+	                    <td id="<?php echo "wpskrowid$i"; ?>" scope="col"><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='34'  type="text" value="<?php echo $o['shop']['name']; ?>" /></td>
+	                    <td scope="col"><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]" size='80'  value="<?php echo $o['shop']['url']; ?>" /></td>
+	               		<td scope="col"><a class="wpskrow"  href="#"><?php echo __('Löschen', 'wp_stadtklick'); ?></a></td>
+	               </tr>
+	     <?php
+			$i++;
 			}
-			?>
-			<tr><th colspan="2">Neue Buchhandlung</th></tr>
-	    		<tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung','wp_stadtklick'); ?></th>
-	                    <td><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='80'  type="text" value="" /></td>
+		}
+		?>
+		</table>
+		<table class="widefat">
+			<tr><th colspan="2"><strong>Neue Buchhandlung</strong></th></tr>
+	    		<tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung', 'wp_stadtklick'); ?></th>
+	                    <td><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='30'  type="text" value="" /></td>
 	                </tr>
-	                <tr valign="top"><th scope="row"><?php echo __('URL zu einem Buch im Webshop (%%isbn%% anstelle der ISBN-Nummer','wp_stadtklick'); ?></th>
+	                <tr valign="top"><th scope="row"><?php echo __('URL zu einem Buch im Webshop (%%isbn%% anstelle der ISBN-Nummer', 'wp_stadtklick'); ?></th>
 	                    <td><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]"  size='80'  value="" /></td>
 	                </tr>
 	            </table>
@@ -189,6 +202,6 @@ function wp_stadtklick_options_page() {
 				<?php submit_button(); ?>
 	</form>
 	</div>
-<?php 
-} 
-?>
+<?php
+}
+	?>
