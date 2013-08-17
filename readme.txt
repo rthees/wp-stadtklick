@@ -31,18 +31,19 @@ Einen Link auf ein Buch setzt man per Shortcode [stadtklick] im Artikeleditor.
 Beispiel:
 [stadtklick isbn=9783862822355]
 
+
+
 == Upgrade Notice ==
 
-= 0.2 =
+= 0.3 =
++ Einstellungs-Seite
 
-+ all isbn will be converted to isbn-13/ean
-+ simple options-page 
 
 == Changelog ==
 
 = 0.2 =
 
-+ all isbn will be converted to isbn-13/ean
++ Alle ISBN werden in ISBN-13/EAN konvertiert
 
 = 0.1 =
 
