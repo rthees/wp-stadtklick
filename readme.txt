@@ -3,7 +3,7 @@ Contributors: wuerzblog
 Donate link: https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das-WordPress-Plugin
 Tags: books, shop, ecommerce, deeplink, randomize
 Requires at least: 2.8.0
-Tested up to: 3.5.1
+Tested up to: 3.6
 Stable tag: 0.3
 License: GPLv2 or later
 
@@ -26,23 +26,52 @@ Einfach installieren
 
 == Anwendung ==
 
+=== Einstellungen ===
+
+In den Einstellungen muss man mindestens einen Online-Shop anlegen. Dazu besucht man die Online-Shops der Buchhandlungen, die man als Links anbieten will. Man braucht nun die URL auf ein bestimmtes Buch, in der auch die ISBN-Nummer enthalten ist. Das geht je nach Shop-System mehr oder weniger einfach.
+Manchmal kann man auch nur auf die Seite der Ergebnisse bei einer ISBN-Suche verlinken. 
+
+Hat man eine URL mit ISBN gefunden, trägt man diese in die Einstellungen von WP-Stadtklick ein und ersetzt die echte ISBN mit dem Platzhalter %%isbn%%.
+Das könnte so aussehen: http://ralfsbuchladen.de/shop/detail.php?desc=full&ean=%%isbn%%
+
+* [Beispiele für Online-Shops von Buchhandlungen in Würzburg](https://gist.github.com/rthees/6257484)
+
+=== Links auf Bücher im Artikel erzeugen ===
 Einen Link auf ein Buch setzt man per Shortcode [stadtklick] im Artikeleditor.
 
-Beispiel:
+Beispiele:
+
+Einen zufälligen Link auf einen der Online-Shops anzeigen, als Link-Text wird der Name in den Einstellungen verwendet:
 [stadtklick isbn=9783862822355]
 
+Einen zufälligen Link auf einen der Online-Shops anzeigen, mit einem festen Link-Text
+[stadtklick isbn=9783862822355 name="Zufälliger Buchlanden"]
+
+Alle Online-Shops mit den jeweiligen Namen als zufällig sortierte Liste ausgeben:
+[stadtklick isbn=9783862822355 output="list"]
+
+
+=== Links auf Bücher für externe Nutzung erzeugen ===
+
+Um "von Außen" auf ein Buch in einem zufälligen Online-Shop zu verlinken, gibt es folgende Möglichkeit:
+
+Das Plugin legt eine Umleitung an, wenn
+* die Wordpress-Installation Permalinks verwendet
+* die Permalinks in den Einstellungen neu gespeichert werden
+
+Dann kann z:b: mit http://blogname.de/isbn/9783862822355 auf ein Buch verlinkt werden.
 
 
 == Upgrade Notice ==
 
 = 0.3 =
-+ Einstellungs-Seite
++ Einstellungs-Seite für beliebige URLs von Online-Shops
 
 
 == Changelog ==
 
 = 0.3 =
-+ Einstellungs-Seite
++ Einstellungs-Seite für beliebige URLs von Online-Shops
 
 = 0.2 =
 
