@@ -4,7 +4,7 @@ Donate link: https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das
 Tags: books, shop, ecommerce, deeplink, randomize
 Requires at least: 2.8.0
 Tested up to: 3.6
-Stable tag: 0.3
+Stable tag: 0.4
 License: GPLv2 or later
 
 Setzt einen Link auf ein Buch in einem zufällig ausgewählten Online-Shop eines Buchladens. 
@@ -55,11 +55,12 @@ Alle Online-Shops mit den jeweiligen Namen als zufällig sortierte Liste ausgebe
 
 Um "von Außen" auf ein Buch in einem zufälligen Online-Shop zu verlinken, gibt es folgende Möglichkeit:
 
-Das Plugin legt eine Umleitung an, wenn
+Die "schöne" Möglichkeit ist, z.B. mit http://blogname.de/isbn/9783862822355 auf ein Buch zu verlinken.
+Das Plugin legt dazu eine Umleitung an, wenn
 * die Wordpress-Installation Permalinks verwendet
 * die Permalinks in den Einstellungen neu gespeichert werden
 
-Dann kann z:b: mit http://blogname.de/isbn/9783862822355 auf ein Buch verlinkt werden.
+Fall keine Text-Permalinks verwendet werden, kann man über den URL-Parameter "stadtklick_isbn" verlinken. So führt http://blogname.de?stadtklick_isbn=9783862822355 direkt zu einem Buch in einem zufällig ausgewählten Online-Shop.
 
 
 == Upgrade Notice ==
