@@ -10,13 +10,13 @@ Das Plugin bietet die Möglichkeit, als einem Artikel auf ein Buch zu verlinken 
 * [Website "Lass den Klick in deiner Stadt, Würzburg"](http://buylocal-wuerzburg.de/)
 * [WP-StadtKlick bei GitHub](https://github.com/rthees/wp-stadtklick)
 
-== Installation ==
+## Installation##
 
 Einfach installieren. Das Plugin kann unter Einstellungen/WP-Stadtklick konfiguriert werden.
 
-== Anwendung ==
+## Anwendung ##
 
-= Einstellungen =
+### Einstellungen ###
 
 In den Einstellungen muss man mindestens einen Online-Shop anlegen. Dazu besucht man die Online-Shops der Buchhandlungen, die man als Links anbieten will. Man braucht nun die URL auf ein bestimmtes Buch, in der auch die ISBN-Nummer enthalten ist. Das geht je nach Shop-System mehr oder weniger einfach.
 Manchmal kann man auch nur auf die Seite der Ergebnisse bei einer ISBN-Suche verlinken. 
@@ -26,7 +26,7 @@ Das könnte so aussehen: http://ralfsbuchladen.de/shop/detail.php?desc=full&ean=
 
 * [Beispiele für Online-Shops von Buchhandlungen in Würzburg](https://gist.github.com/rthees/6257484)
 
-= Links auf Bücher im Artikel erzeugen =
+### Links auf Bücher im Artikel erzeugen ###
 Einen Link auf ein Buch setzt man per Shortcode [stadtklick] im Artikeleditor.
 
 Beispiele:
@@ -41,7 +41,7 @@ Alle Online-Shops mit den jeweiligen Namen als zufällig sortierte Liste ausgebe
 `[stadtklick isbn=9783862822355 output="list"]`
 
 
-= Links auf Bücher für externe Nutzung erzeugen =
+### Links auf Bücher für externe Nutzung erzeugen ###
 
 Um "von Außen" auf ein Buch in einem zufälligen Online-Shop zu verlinken, gibt es folgende Möglichkeit:
 
@@ -54,30 +54,24 @@ Das Plugin legt dazu eine Umleitung an, wenn
 Fall keine Text-Permalinks verwendet werden, kann man über den URL-Parameter "stadtklick_isbn" verlinken. So führt http://blogname.de?stadtklick_isbn=9783862822355 direkt zu einem Buch in einem zufällig ausgewählten Online-Shop.
 
 
-== Upgrade Notice ==
+## Changelog ##
 
-= 0.4.1 =
-+ Kleinere HTML-Fehler in den Einstellungen behoben
-
-
-== Changelog ==
-
-= 0.4.1 =
+#### 0.4.1 ####
 + Kleinere HTML-Fehler in den Einstellungen behoben
 + Beim Deaktivieren des Plugins die Optionen aus der Wordpress-Datenbank löschen
 
-= 0.4 =
+#### 0.4 ####
 + Shops als Liste
 + ISBN-Redirect
 
-= 0.3 =
+#### 0.3  ####
 + Einstellungs-Seite für beliebige URLs von Online-Shops
 
-= 0.2 =
+#### 0.2  ####
 
 + Alle ISBN werden in ISBN-13/EAN konvertiert
 
-= 0.1 =
+#### 0.1 ####
 
 * hardcoded URLs
 * redirect with query-string
