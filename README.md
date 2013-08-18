@@ -9,6 +9,7 @@ Das Plugin bietet die Möglichkeit, als einem Artikel auf ein Buch zu verlinken 
 
 * [Website "Lass den Klick in deiner Stadt, Würzburg"](http://buylocal-wuerzburg.de/)
 * [WP-StadtKlick bei GitHub](https://github.com/rthees/wp-stadtklick)
+* [Artikel über das Plugin im Würzblog](http://wuerzblog.de/2013/05/05/lass-den-klick-in-deiner-stadt-das-wordpress-plugin/)
 
 ## Installation##
 
