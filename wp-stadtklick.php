@@ -1,8 +1,8 @@
 <?php
 /*
- Plugin Name: Stadtklick
- Version: 0.4
- Plugin URI: http://herrthees.de/
+ Plugin Name: WP-Stadtklick
+ Version: 0.4.2
+ Plugin URI: http://wuerzblog.de/2013/05/05/lass-den-klick-in-deiner-stadt-das-wordpress-plugin/
  Author: Ralf Thees
  Author URI: http://herrthees.de/
  Description: Plugin für "Lass den Klick in deiner Stadt"
@@ -12,6 +12,36 @@
 load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)) . '');
  
  $wuebu_stadtklick_buchhandlungUrlArray=  get_option('wp_stadtklick_options');
+ 
+ 
+ 	 if ( function_exists('register_uninstall_hook') ) register_uninstall_hook(__FILE__, 'wuebu_stadtklick_uninstall');
+
+	function wuebu_stadtklick_uninstall() {
+		 delete_option('wp_stadtklick_options'); 
+	}
+
+	function wuebu_stadtklick_activate() {
+		update_option('wp_stadtklick_more_options',array("target"=>'_blank','version'=>'0.4.1'));
+	    
+	}
+	register_activation_hook( __FILE__, 'wuebu_stadtklick_activate' );
+	
+	add_filter('plugin_row_meta', 'wuebu_stadtklick_plugin_meta', 10, 2);
+
+
+
+		function wuebu_stadtklick_plugin_meta($links, $file) {
+
+			$plugin = plugin_basename(__FILE__);
+			// create link
+			if ($file == $plugin) {
+				return array_merge(
+					$links, 
+					array(sprintf('<a href="https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das-WordPress-Plugin">%s</a>', __('Spende mit Flattr', 'wp_stadtklick'))));
+
+			}
+			return $links;
+		}
  
 
 	function isbn10to13($isbn) {
@@ -168,36 +198,35 @@ function wp_stadtklick_options_page() {
 
 <?php //do_settings_sections('wp_stadtklick'); ?>
 
-<table class="widefat">
+
 <?php
 $i=0;
 if (is_array($options)) {
-echo '<thead>';
-echo '<tr  scope="col"><th>'.__('Name der Buchhandlung', 'wp_stadtklick').'</th><th scope="col">'.__('URL zu einem Buch im Webshop', 'wp_stadtklick').'</th><th>'.__('Aktion', 'wp_stadtklick').'</th></tr>';
-echo '</thead>';
-foreach ($options as $o) {
+	echo '<table class="widefat">';
+	echo '<thead>';
+	echo '<tr  scope="col"><th>'.__('Name der Buchhandlung', 'wp_stadtklick').'</th><th scope="col">'.__('URL zu einem Buch im Webshop', 'wp_stadtklick').'</th><th>'.__('Aktion', 'wp_stadtklick').'</th></tr>';
+	echo '</thead>';
+	foreach ($options as $o) {
+	?>
+
+	<tr valign="top">
+	<td id="<?php echo "wpskrowid$i"; ?>" scope="col"><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='34'  type="text" value="<?php echo $o['shop']['name']; ?>" /></td>
+	<td scope="col"><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]" size='80'  value="<?php echo $o['shop']['url']; ?>" /></td>
+	<td scope="col"><a class="wpskrow" href="#"><?php echo __('Löschen', 'wp_stadtklick'); ?></a></td>
+	</tr>
+	<?php
+	$i++;
+	}
+	echo '</table>';
+}
 ?>
 
-<tr valign="top">
-<td id="<?php echo "wpskrowid$i"; ?>" scope="col"><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='34'  type="text" value="<?php echo $o['shop']['name']; ?>" /></td>
-<td scope="col"><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]" size='80'  value="<?php echo $o['shop']['url']; ?>" /></td>
-<td scope="col"><a class="wpskrow"  href="#"><?php echo __('Löschen', 'wp_stadtklick'); ?><
-/a></td>
-</tr>
-<?php
-$i++;
-}
-}
-?>
-</table>
 <table class="widefat">
 <tr><th colspan="2"><strong>Neue Buchhandlung</strong></th></tr>
-<tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung', 'wp_stadtklick'); ?><
-/th>
+<tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung', 'wp_stadtklick'); ?></th>
 <td><input name="wp_stadtklick_options[<?php echo $i; ?>][shop][name]" size='30'  type="text" value="" /></td>
 </tr>
-<tr valign="top"><th scope="row"><?php echo __('URL zu einem Buch im Webshop (%%isbn%% anstelle der ISBN-Nummer', 'wp_stadtklick'); ?><
-/th>
+<tr valign="top"><th scope="row"><?php echo __('URL zu einem Buch im Webshop<br/>(%%isbn%% anstelle der ISBN-Nummer)', 'wp_stadtklick'); ?></th>
 <td><input type="text" name="wp_stadtklick_options[<?php echo $i; ?>][shop][url]"  size='80'  value="" /></td>
 </tr>
 </table>

@@ -1,25 +1,22 @@
 WP-StadtKlick
 =============
 
-Das Plugin setzt einen Link auf ein Buch in einem zufällig ausgewählten Online-Shop eines Buchladens. 
-
-== Description ==
-
-WP-Stadtklick ist ein Plugin, um die Aktion "Lass den Klick in deiner Stadt" in Wordpress zu integrieren. Die Aktion mancher lokaler Buchhändler will darauf Aufmerksam machen, dass man Bücher online nicht nur bei Amazon, sondern auch in Online-Shops der Buchläden vor Ort.
+WP-Stadtklick ist ein Plugin, um die Aktion "Lass den Klick in deiner Stadt" in Wordpress zu integrieren. Die Aktion mancher lokaler Buchhändler will darauf aufmerksam machen, dass man Bücher online nicht nur bei Amazon, sondern auch in Online-Shops der Buchläden vor Ort kaufen kann.
 
 Will man nun auf ein Buch im Blog verlinken, steht man dabei vor dem Problem, dass man sich entweder für den Webshop eines Buchladens entscheiden oder eine länger Liste mit Links zu allen regionalen Webshops erstellen müsste. 
 
-Das Plugin verlinkt nun zufällig auf einen Online-Shop eines Buchladens - im Moment nur auf Läden in Würzburg.
+Das Plugin bietet die Möglichkeit, als einem Artikel auf ein Buch zu verlinken - zufällig in einem Online-Shop eines Buchladens.
+
+* [Website "Lass den Klick in deiner Stadt, Würzburg"](http://buylocal-wuerzburg.de/)
+* [WP-StadtKlick bei GitHub](https://github.com/rthees/wp-stadtklick)
 
 == Installation ==
 
-Einfach installieren
+Einfach installieren. Das Plugin kann unter Einstellungen/WP-Stadtklick konfiguriert werden.
 
 == Anwendung ==
 
-== Anwendung ==
-
-=== Einstellungen ===
+= Einstellungen =
 
 In den Einstellungen muss man mindestens einen Online-Shop anlegen. Dazu besucht man die Online-Shops der Buchhandlungen, die man als Links anbieten will. Man braucht nun die URL auf ein bestimmtes Buch, in der auch die ISBN-Nummer enthalten ist. Das geht je nach Shop-System mehr oder weniger einfach.
 Manchmal kann man auch nur auf die Seite der Ergebnisse bei einer ISBN-Suche verlinken. 
@@ -29,49 +26,56 @@ Das könnte so aussehen: http://ralfsbuchladen.de/shop/detail.php?desc=full&ean=
 
 * [Beispiele für Online-Shops von Buchhandlungen in Würzburg](https://gist.github.com/rthees/6257484)
 
-=== Links auf Bücher im Artikel erzeugen ===
+= Links auf Bücher im Artikel erzeugen =
 Einen Link auf ein Buch setzt man per Shortcode [stadtklick] im Artikeleditor.
 
 Beispiele:
 
 Einen zufälligen Link auf einen der Online-Shops anzeigen, als Link-Text wird der Name in den Einstellungen verwendet:
-[stadtklick isbn=9783862822355]
+`[stadtklick isbn=9783862822355]`
 
 Einen zufälligen Link auf einen der Online-Shops anzeigen, mit einem festen Link-Text
-[stadtklick isbn=9783862822355 name="Zufälliger Buchlanden"]
+`[stadtklick isbn=9783862822355 name="Zufälliger Buchlanden"]`
 
 Alle Online-Shops mit den jeweiligen Namen als zufällig sortierte Liste ausgeben:
-[stadtklick isbn=9783862822355 output="list"]
+`[stadtklick isbn=9783862822355 output="list"]`
 
 
-=== Links auf Bücher für externe Nutzung erzeugen ===
+= Links auf Bücher für externe Nutzung erzeugen =
 
 Um "von Außen" auf ein Buch in einem zufälligen Online-Shop zu verlinken, gibt es folgende Möglichkeit:
 
 Die "schöne" Möglichkeit ist, z.B. mit http://blogname.de/isbn/9783862822355 auf ein Buch zu verlinken.
 Das Plugin legt dazu eine Umleitung an, wenn
+
 * die Wordpress-Installation Permalinks verwendet
 * die Permalinks in den Einstellungen neu gespeichert werden
 
 Fall keine Text-Permalinks verwendet werden, kann man über den URL-Parameter "stadtklick_isbn" verlinken. So führt http://blogname.de?stadtklick_isbn=9783862822355 direkt zu einem Buch in einem zufällig ausgewählten Online-Shop.
 
 
+== Upgrade Notice ==
+
+= 0.4.1 =
++ Kleinere HTML-Fehler in den Einstellungen behoben
+
+
+== Changelog ==
+
+= 0.4.1 =
++ Kleinere HTML-Fehler in den Einstellungen behoben
++ Beim Deaktivieren des Plugins die Optionen aus der Wordpress-Datenbank löschen
 
 = 0.4 =
-+ Shops als Liste ausgeben (output="list")
++ Shops als Liste
++ ISBN-Redirect
 
 = 0.3 =
-+ Einstellungs-Seite aufgehübscht
++ Einstellungs-Seite für beliebige URLs von Online-Shops
 
 = 0.2 =
 
-+ all isbn will be converted to isbn-13/ean
-+ simple options-page to add new bookstores
-
-= 0.1.1 =
-Fix: 
-
-== Changelog ==
++ Alle ISBN werden in ISBN-13/EAN konvertiert
 
 = 0.1 =
 
