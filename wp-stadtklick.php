@@ -7,10 +7,7 @@
  Author URI: http://herrthees.de/
  Description: Plugin für "Lass den Klick in deiner Stadt"
  */
- 
-
-
- 
+  
  $wuebu_stadtklick_buchhandlungUrlArray=  get_option('wp_stadtklick_options');
  
  
