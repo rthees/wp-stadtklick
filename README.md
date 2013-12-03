@@ -33,6 +33,7 @@ Beispiele:
 
 Einen zufälligen Link auf einen der Online-Shops anzeigen, als Link-Text wird der Name in den Einstellungen verwendet:
 `[stadtklick isbn=9783862822355]`
+Ob eine ISBN-10 oder ISBN-13 verwendet wird, ist egal, intern wird auf ISBN-13 umgerechnet.
 
 Einen zufälligen Link auf einen der Online-Shops anzeigen, mit einem festen Link-Text
 `[stadtklick isbn=9783862822355 name="Zufälliger Buchlanden"]`
@@ -53,14 +54,10 @@ Das Plugin legt dazu eine Umleitung an, wenn
 
 Fall keine Text-Permalinks verwendet werden, kann man über den URL-Parameter "stadtklick_isbn" verlinken. So führt http://blogname.de?stadtklick_isbn=9783862822355 direkt zu einem Buch in einem zufällig ausgewählten Online-Shop.
 
-
-== Upgrade Notice ==
-
-= 0.4.1 =
-+ Kleinere HTML-Fehler in den Einstellungen behoben
-
-
 == Changelog ==
+
+= 0.4.3 =
++ Einzel-Link auf einen Webshop wird jetzt intern auf einen zufällig auf einen Webshop umgeleitet - besser für Blogs mit Cache.
 
 = 0.4.1 =
 + Kleinere HTML-Fehler in den Einstellungen behoben

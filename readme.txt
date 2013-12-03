@@ -3,8 +3,8 @@ Contributors: wuerzblog
 Donate link: https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das-WordPress-Plugin
 Tags: books, shop, ecommerce, deeplink, randomize
 Requires at least: 2.8.0
-Tested up to: 3.6
-Stable tag: 0.4
+Tested up to: 3.7.1
+Stable tag: 0.4.3
 License: GPLv2 or later
 
 Setzt einen Link auf ein Buch in einem zufällig ausgewählten Online-Shop eines Buchladens. 
@@ -43,6 +43,7 @@ Beispiele:
 
 Einen zufälligen Link auf einen der Online-Shops anzeigen, als Link-Text wird der Name in den Einstellungen verwendet:
 `[stadtklick isbn=9783862822355]`
+Ob eine ISBN-10 oder ISBN-13 verwendet wird, ist egal, intern wird auf ISBN-13 umgerechnet.
 
 Einen zufälligen Link auf einen der Online-Shops anzeigen, mit einem festen Link-Text
 `[stadtklick isbn=9783862822355 name="Zufälliger Buchlanden"]`
@@ -61,16 +62,19 @@ Das Plugin legt dazu eine Umleitung an, wenn
 * die Wordpress-Installation Permalinks verwendet
 * die Permalinks in den Einstellungen neu gespeichert werden
 
-Fall keine Text-Permalinks verwendet werden, kann man über den URL-Parameter "stadtklick_isbn" verlinken. So führt http://blogname.de?stadtklick_isbn=9783862822355 direkt zu einem Buch in einem zufällig ausgewählten Online-Shop.
+Falls keine Text-Permalinks verwendet werden, kann man über den URL-Parameter "stadtklick_isbn" verlinken. So führt http://blogname.de?stadtklick_isbn=9783862822355 direkt zu einem Buch in einem zufällig ausgewählten Online-Shop.
 
 
 == Upgrade Notice ==
 
-= 0.4.1 =
-+ Kleinere HTML-Fehler in den Einstellungen behoben
+= 0.4.3 =
++ Einzel-Link auf einen Webshop wird jetzt intern auf einen zufällig auf einen Webshop umgeleitet - besser für Blogs mit Cache.
 
 
 == Changelog ==
+
+= 0.4.3 =
++ Einzel-Link auf einen Webshop wird jetzt intern auf einen zufällig auf einen Webshop umgeleitet - besser für Blogs mit Cache.
 
 = 0.4.1 =
 + Kleinere HTML-Fehler in den Einstellungen behoben

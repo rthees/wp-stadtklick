@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: WP-Stadtklick
- Version: 0.4.2
+ Version: 0.4.3
  Plugin URI: http://wuerzblog.de/2013/05/05/lass-den-klick-in-deiner-stadt-das-wordpress-plugin/
  Author: Ralf Thees
  Author URI: http://herrthees.de/
@@ -9,7 +9,7 @@
  */
  
 
-load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)) . '');
+
  
  $wuebu_stadtklick_buchhandlungUrlArray=  get_option('wp_stadtklick_options');
  
@@ -21,7 +21,7 @@ load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)
 	}
 
 	function wuebu_stadtklick_activate() {
-		update_option('wp_stadtklick_more_options',array("target"=>'_blank','version'=>'0.4.1'));
+		update_option('wp_stadtklick_more_options',array("target"=>'_blank','version'=>'0.4.3'));
 	    
 	}
 	register_activation_hook( __FILE__, 'wuebu_stadtklick_activate' );
@@ -30,18 +30,16 @@ load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)
 
 
 
-		function wuebu_stadtklick_plugin_meta($links, $file) {
-
-			$plugin = plugin_basename(__FILE__);
-			// create link
-			if ($file == $plugin) {
-				return array_merge(
-					$links, 
-					array(sprintf('<a href="https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das-WordPress-Plugin">%s</a>', __('Spende mit Flattr', 'wp_stadtklick'))));
-
-			}
-			return $links;
+	function wuebu_stadtklick_plugin_meta($links, $file) {
+		$plugin = plugin_basename(__FILE__);
+		// create link
+		if ($file == $plugin) {
+			return array_merge(
+				$links, 
+				array(sprintf('<a href="https://flattr.com/thing/1316466/Lass-den-Klick-in-deiner-Stadt-Das-WordPress-Plugin">%s</a>', __('Spende mit Flattr', 'wp_stadtklick'))));
 		}
+		return $links;
+	}
  
 
 	function isbn10to13($isbn) {
@@ -108,7 +106,7 @@ load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)
 		if ($output=='list') {
 			return wuebu_stadtklick_get_shoplist($isbn);
 		} else {
-				
+			return '<a href="'.site_url('/isbn/').isbn10to13($isbn).'">'.$urltitle.'</a>';	
 			return '<a href="'.$buchlink['url'].'">'.$urltitle.'</a>';
 		}
 	}
@@ -138,13 +136,14 @@ function wp_stadtklick_create_menu() {
 
 add_action('admin_init', 'register_wp_stadtklick' );
 function register_wp_stadtklick() {
+	load_plugin_textdomain('wp_stadtklick', false, dirname(plugin_basename(__FILE__)) . '');
 	register_setting( 'wp_stadtklick_options', 'wp_stadtklick_options', 'wp_stadtklick_validate' );
 	add_settings_section('wp_stadtklick_shops', 'Webshop-Einstellungen', 'wp_stadtklick_section_shop', 'wp_stadtklick');
 	add_settings_field('wp_stadtklick_shop','Name des Buchladens', 'wp_stadtklick_shop_name_input', 'wp_stadtklick', 'wp_stadtklick_shops');
 }
 
 function wp_stadtklick_section_shop() {
-	echo '<p>Webshop-EInstellungen</p>';
+	echo '<p>Webshop-Einstellungen</p>';
 }
 
 function wp_stadtklick_shop_name_input() {
@@ -152,18 +151,16 @@ function wp_stadtklick_shop_name_input() {
 	//echo "<pre>"; print_r($options); echo "</pre>";
 	$i=0;
 	if (is_array($options)) {
-	foreach ($options as $o) {
-		echo '<div style="border: 1px solid #999; padding: 0 0 10px 0;">';
-		echo "<input id='wp_stadtklick_shop_name_$i' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='".$o['shop']['name']."' /><br/>";
-		echo "<input id='wp_stadtklick_shop_url_$i' name='wp_stadtklick_options[$i][shop][url]' size='80' type='text' value='".$o['shop']['url']."' /><br/>";
-		echo '</div>';
-		$i++;
+		foreach ($options as $o) {
+			echo '<div style="border: 1px solid #999; padding: 0 0 10px 0;">';
+			echo "<input id='wp_stadtklick_shop_name_$i' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='".$o['shop']['name']."' /><br/>";
+			echo "<input id='wp_stadtklick_shop_url_$i' name='wp_stadtklick_options[$i][shop][url]' size='80' type='text' value='".$o['shop']['url']."' /><br/>";
+			echo '</div>';
+			$i++;
+		}
 	}
-	}
-			echo "<input id='wp_stadtklick_shop_name' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='' /><br/>";
-			echo "<input id='wp_stadtklick_shop_url_$i' name='wp_stadtklick_options[$i][shop][url]' size='80' type='text' value='' /><br/>";
-		
-	
+	echo "<input id='wp_stadtklick_shop_name' name='wp_stadtklick_options[$i][shop][name]' size='80' type='text' value='' /><br/>";
+	echo "<input id='wp_stadtklick_shop_url_$i' name='wp_stadtklick_options[$i][shop][url]' size='80' type='text' value='' /><br/>";
 }
 
 // validate  options
@@ -218,9 +215,9 @@ if (is_array($options)) {
 	$i++;
 	}
 	echo '</table>';
-}
+	}
 ?>
-
+<p></p>
 <table class="widefat">
 <tr><th colspan="2"><strong>Neue Buchhandlung</strong></th></tr>
 <tr valign="top"><th scope="row"><?php echo __('Name der Buchhandlung', 'wp_stadtklick'); ?></th>
