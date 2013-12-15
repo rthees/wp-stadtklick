@@ -1,7 +1,7 @@
 <?php
 /*
  Plugin Name: WP-Stadtklick
- Version: 0.4.3
+ Version: 0.5
  Plugin URI: http://wuerzblog.de/2013/05/05/lass-den-klick-in-deiner-stadt-das-wordpress-plugin/
  Author: Ralf Thees
  Author URI: http://herrthees.de/
