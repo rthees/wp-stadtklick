@@ -67,8 +67,8 @@ Falls keine Text-Permalinks verwendet werden, kann man über den URL-Parameter "
 
 == Upgrade Notice ==
 
-= 0.4.3 =
-+ Einzel-Link auf einen Webshop wird jetzt intern auf einen zufällig auf einen Webshop umgeleitet - besser für Blogs mit Cache.
+= 0.4.4 =
++ Fix: Linktext für manchen zufällige Shops nicht richtig angezeigt
 
 
 == Changelog ==
